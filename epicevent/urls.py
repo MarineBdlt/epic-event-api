@@ -14,8 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+from epicevent_app.views import UserViewSet, ClientViewSet, ContractViewSet, EventViewSet
+
+admin.site.site_header = 'Epic Event CER'
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'clients', ClientViewSet)
+router.register(r'contracts', ContractViewSet)
+router.register(r'events', EventViewSet)
+
+# path("", include(issue_router.urls)),
+# path("", include(users_router.urls)),
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path("", include(router.urls)),
 ]

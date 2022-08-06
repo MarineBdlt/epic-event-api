@@ -1,54 +1,54 @@
 from django.db import models
+from django.contrib import admin
+from datetime import date
 
 class Client(models.Model):
 
-    client_id = models.IntegerField()
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    mobile = models.CharField(max_length=10)
-    phone = models.CharField(max_length=10)
-    email = models.EmailField()
-    company_name = models.CharField(50, null=False)
-    date_created = models.IntegerField()
-    sales_contact = models.IntegerField()
-    contract = models.ForeignKey("epicevent_app.Contract", on_delete=models.CASCADE, related_name="contract")
+    first_name = models.CharField(blank=True, null=True, max_length=50)
+    last_name = models.CharField(blank=True, null=True, max_length=50)
+    mobile = models.CharField(blank=True, null=True, max_length=10)
+    phone = models.CharField(blank=True, null=True, max_length=10)
+    email = models.EmailField(null=True)
+    company_name = models.CharField(max_length=50, null=False)
+    date_created = models.DateField(default=date.today)
+    sales_contact = models.IntegerField(blank=True, null=True)
     
     def __str__(self):
-        return str(self.client_id, self.first_name, self.last_name, self.email)
+        return self.company_name.capitalize()
+
+class ClientAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Client, ClientAdmin)
     
 class Contract(models.Model):
-    
-    contract_id = models.IntegerField()
-    client = models.ForeignKey("epicevent_app.Client", on_delete=models.CASCADE, related_name="client")
-    title = models.CharField(max_length=50)
-    content = models.CharField()
 
-class Contract_Status(models.Model):
+    client = models.ForeignKey("epicevent_app.Client", on_delete=models.CASCADE, related_name="contract_client")
+    title = models.CharField(null=True, blank=True, max_length=50)
+    content = models.CharField(null=True, blank=True, max_length=1000)
     
-    contract_status_id = models.IntegerField()
-    contract = models.ForeignKey("epicevent_app.Contract", on_delete=models.CASCADE, related_name="contract")
-    is_signed = models.BooleanField(default=False)
+    RED = "REDACTION", "Rédaction"
+    CS = "EN SIGNATURE", "En cours de signature"
+    S = "SIGNE", "Signé"
+    T = "TERMINE", "Terminé"
+    STATUS_CHOICES = [RED, CS, S, T]
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default=RED)
+    
+    def __str__(self):
+        return f'{self.client.company_name.capitalize()} - {self.title} ➡️ {self.status}'
+
+class ContractAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Contract, ContractAdmin)
 
 class Event(models.Model):
     
-    event_id = models.IntegerField()
-    contract = models.ForeignKey("epicevent_app.Contract", on_delete=models.CASCADE, related_name="contract")
-    client = models.ForeignKey("epicevent_app.Client", on_delete=models.CASCADE, related_name="client")
-    title = models.CharField(max_length=50)
-    description = models.CharField()
+    contract = models.ForeignKey("epicevent_app.Contract", on_delete=models.CASCADE, related_name="event_contract")
+    client = models.ForeignKey("epicevent_app.Client", on_delete=models.CASCADE, related_name="event_client")
+    title = models.CharField(null=True, blank=True, max_length=50)
+    description = models.CharField(null=True, blank=True, max_length=1000)
     is_over = models.BooleanField(default=False)
+
+class EventAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Event, EventAdmin)
     
-    
-    
-
-    # project_id = models.ForeignKey(
-    #     "softdesk_api.Project", on_delete=models.CASCADE, related_name="project"
-    # )
-
-# class ContributorAdmin(admin.ModelAdmin):
-#     pass
-
-
-# admin.site.register(Contributor, ContributorAdmin)
-
-# Create your models here.
