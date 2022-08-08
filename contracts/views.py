@@ -1,6 +1,8 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ModelViewSet
-from contracts.serializers import ContractSerializer
+from contracts.serializers import ContractDetailSerializer
 from contracts.models import Contract
+from events.models import Event
 
 class ContractViewSet(ModelViewSet):
     serializer_class = ContractDetailSerializer
