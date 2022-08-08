@@ -15,6 +15,7 @@ class ContractViewSet(ModelViewSet):
         serializer.save()
         data = self.request.data
         if data["status"] == "SIGNE":
+            print("HERE")
             contract = get_object_or_404(Contract, id=self.kwargs.get("pk"))
             new_event = Event(contract=contract, client=contract.client)
             new_event.save()

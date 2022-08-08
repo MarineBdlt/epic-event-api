@@ -9,6 +9,13 @@ class Event(models.Model):
     title = models.CharField(null=True, blank=True, max_length=50)
     description = models.CharField(null=True, blank=True, max_length=1000)
     is_over = models.BooleanField(default=False)
+    
+    def __str__(self):
+        if self.is_over == False:
+            status = "En cours"
+        else:
+            status = "Terminé"
+        return f'{self.client.company_name.capitalize()} | {self.contract.title} | {status}'
 
 class EventAdmin(admin.ModelAdmin):
     pass
