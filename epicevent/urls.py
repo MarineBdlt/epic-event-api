@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from epicevent_app.views import UserViewSet, ClientViewSet, ContractViewSet, EventViewSet
+from contracts.views import ContractViewSet
+from events.views import EventViewSet
+from clients.views import ClientViewSet
+from auth_app.views import UserViewSet
 
 admin.site.site_header = 'Epic Event CER'
 

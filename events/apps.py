@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class EpiceventAppConfig(AppConfig):
+class EventsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'epicevent_app'
+    name = 'events'
