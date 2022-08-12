@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib import admin
 from datetime import date
+from django.conf import settings
+from django.contrib.auth.models import Group
 
 class Client(models.Model):
 
@@ -11,7 +13,9 @@ class Client(models.Model):
     email = models.EmailField(null=True)
     company_name = models.CharField(max_length=50, null=False)
     date_created = models.DateField(default=date.today)
-    sales_contact = models.IntegerField(blank=True, null=True)
+    sales_contact = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+    limit_choices_to={'groups__name': 'sales_team'}, null=True, on_delete=models.SET_NULL) #ANCHOR manytomany ou foreignkey ?
     
     def __str__(self):
         return self.company_name.capitalize()
