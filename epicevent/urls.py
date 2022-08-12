@@ -30,11 +30,9 @@ router.register(r'clients', ClientViewSet)
 router.register(r'contracts', ContractViewSet)
 router.register(r'events', EventViewSet)
 
-# path("", include(issue_router.urls)),
-# path("", include(users_router.urls)),
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
-    path("", include(router.urls)),
+    path('api/', include('rest_framework.urls')),
+    path("api/account/", include(router.urls)),
 ]
