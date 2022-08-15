@@ -4,8 +4,10 @@ from django.contrib import admin
 class Contract(models.Model):
 
     client = models.ForeignKey("clients.Client", on_delete=models.CASCADE, related_name="contract_client")
+    amount = models.IntegerField(null=True)
     title = models.CharField(null=True, blank=True, max_length=50)
     content = models.CharField(null=True, blank=True, max_length=1000)
+    date = models.DateField(null=True)
     
     RED = '1', 'Rédaction'
     CS = '2', 'En cours de signature'
