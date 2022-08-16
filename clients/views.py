@@ -3,8 +3,6 @@ from rest_framework.permissions import IsAdminUser
 from clients.serializers import ClientListSerializer, ClientDetailSerializer
 from clients.models import Client
 from clients.permissions import IsClientReferentInClientView
-from django_filters.rest_framework import DjangoFilterBackend
-
 class ClientViewSet(ModelViewSet):
     permissions_class = (IsAdminUser|IsClientReferentInClientView)
     serializer_class = ClientListSerializer

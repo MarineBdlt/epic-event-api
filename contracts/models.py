@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib import admin
+from datetime import date
 
 class Contract(models.Model):
 
@@ -7,7 +8,7 @@ class Contract(models.Model):
     amount = models.IntegerField(null=True)
     title = models.CharField(null=True, blank=True, max_length=50)
     content = models.CharField(null=True, blank=True, max_length=1000)
-    date = models.DateField(null=True)
+    date = models.DateField(default=date.today)
     
     RED = 'RED', 'Rédaction'
     CS = 'CS', 'En cours de signature'
