@@ -12,17 +12,15 @@ class ContractViewSet(ModelViewSet):
     serializer_class = ContractDetailSerializer
     queryset = Contract.objects.all()
     permission_class = (IsAdminUser|IsClientReferentInContractView)   
+    filterset_fields = ['client__company_name', 'client__email', 'date', 'amount']
         
     def perform_update(self, serializer):
         print(self.request.data)
         serializer.save()
         data = self.request.data
-        if data['status'] == '3':
-            print("signé, in condition")
+        if data['status'] == 'S':
             contract = get_object_or_404(Contract, id=self.kwargs.get("pk"))
             new_event = Event(contract=contract, client=contract.client)
             new_event.save()
         serializer.save()
     
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['client__company_name', 'client__email', 'date', 'amount']

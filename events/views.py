@@ -9,5 +9,6 @@ from events.permissions import IsSupportTeam
 class EventViewSet(ModelViewSet):
     permission_classe = (IsAdminUser|IsSupportTeam)
     serializer_class = EventSerializer
-    queryset = Event.objects.all()
+    queryset = Event.objects.all()   
+    filterset_fields = ['client__company_name', 'client__email', 'contract__date']
 
