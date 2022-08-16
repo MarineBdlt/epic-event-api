@@ -34,5 +34,5 @@ router.register(r'events', EventViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
-    path("api/account/", include(router.urls)),
+    path("api/", include(router.urls)),
 ]
