@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from django.conf import settings
+from datetime import date
 
 
 class Event(models.Model):
@@ -12,6 +13,7 @@ class Event(models.Model):
     limit_choices_to={'groups__name': 'support_team'}, null=True, on_delete=models.SET_NULL) 
     title = models.CharField(null=True, blank=True, max_length=50)
     description = models.CharField(null=True, blank=True, max_length=1000)
+    date = models.DateField(default=date.today)
     is_over = models.BooleanField(default=False)
     
     def __str__(self):

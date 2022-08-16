@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib import admin
 from datetime import date
 from django.conf import settings
-from django.contrib.auth.models import Group
 
 class Client(models.Model):
 
