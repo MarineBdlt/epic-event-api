@@ -11,5 +11,5 @@ class IsSupportTeam(permissions.BasePermission):
                 event = Event.objects.get(id=view.kwargs["pk"])
             except ObjectDoesNotExist:
                 return False            
-            return request.user in event.support_team
+            return request.user == event.support_team
         
