@@ -7,7 +7,8 @@ from events.permissions import IsSupportTeam
 
 # ANCHOR IsAdminUser généralisé dans les settings ?
 class EventViewSet(ModelViewSet):
-    permission_classes = (IsAdminUser|IsSupportTeam)
+    permission_classe = (IsAdminUser|IsSupportTeam)
     serializer_class = EventSerializer
-    queryset = Event.objects.all()
+    queryset = Event.objects.all()   
+    filterset_fields = ['client__company_name', 'client__email', 'contract__date']
 

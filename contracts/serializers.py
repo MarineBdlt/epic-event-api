@@ -1,5 +1,6 @@
 from contracts.models import Contract
 from clients.serializers import ClientListSerializer
+from auth_app.serializers import UserSerializer
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 class ContractListSerializer(ModelSerializer):
@@ -14,7 +15,9 @@ class ContractDetailSerializer(ModelSerializer):
         fields = '__all__'
     
     def get_client(self, instance):
-        queryset = instance.client
-        serializer = ClientListSerializer(queryset)
+        query = instance.client
+        serializer = ClientListSerializer(query)
         return serializer.data
+
+        
         

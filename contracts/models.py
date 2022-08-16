@@ -4,13 +4,15 @@ from django.contrib import admin
 class Contract(models.Model):
 
     client = models.ForeignKey("clients.Client", on_delete=models.CASCADE, related_name="contract_client")
+    amount = models.IntegerField(null=True)
     title = models.CharField(null=True, blank=True, max_length=50)
     content = models.CharField(null=True, blank=True, max_length=1000)
+    date = models.DateField(null=True)
     
-    RED = '1', 'Rédaction'
-    CS = '2', 'En cours de signature'
-    S = '3', 'Signé'
-    T = '4', 'Terminé'
+    RED = 'RED', 'Rédaction'
+    CS = 'CS', 'En cours de signature'
+    S = 'S', 'Signé'
+    T = 'T', 'Terminé'
     STATUS_CHOICES = [RED, CS, S, T]
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default=RED)
     
@@ -18,6 +20,8 @@ class Contract(models.Model):
         for choice in [self.RED, self.CS, self.S, self.T]:
             if self.status == choice[0]:
                 str_status = choice[1]
+            else:
+                str_status = self.RED[1]
         return f'{self.client.company_name.capitalize()} | {self.title} | {str_status}'
 
 class ContractAdmin(admin.ModelAdmin):

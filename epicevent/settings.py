@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
+    # 'rest_framework_filters',
 ]
 
 MIDDLEWARE = [
@@ -143,14 +145,21 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 100,
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
-        # "rest_framework.permissions.IsAdminUser",
-    ]
+        "rest_framework.permissions.IsAdminUser",
+    ],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend", 
+        ]
 }
 
-LOGIN_REDIRECT_URL = '../account/'
-LOGOUT_REDIRECT_URL = '../login/'
+# LOGIN_REDIRECT_URL = '../account/'
+# LOGOUT_REDIRECT_URL = '../logout/'
+
+
+# JE NE PEUX PLUS ME LOG OUT
+# FILTER => MODELVIEWSET ? piste https://github.com/manjitkumar/drf-url-filters
