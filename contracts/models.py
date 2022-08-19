@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib import admin
 from datetime import date
 
+# from django.forms import ValidationError
+
 class Contract(models.Model):
 
     client = models.ForeignKey("clients.Client", on_delete=models.CASCADE, related_name="contract_client")
@@ -25,6 +27,12 @@ class Contract(models.Model):
                 str_status = self.RED[1]
         return f'{self.client.company_name.capitalize()} | {self.title} | {str_status}'
 
+    # RAISE ERROR IF CLIENT-ID IS NOT DEFINED
+    # def check_and_save(self, *args, **kwargs):
+    #     if self.client_id == None:
+    #         raise ValidationError
+    #     else:
+    #         self.save(self, *args, **kwargs)
 class ContractAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Contract, ContractAdmin)

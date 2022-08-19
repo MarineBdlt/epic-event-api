@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAdminUser
 from clients.serializers import ClientListSerializer, ClientDetailSerializer
 from clients.models import Client
 from clients.permissions import IsClientReferentInClientView
+from django.shortcuts import get_object_or_404
 class ClientViewSet(ModelViewSet):
     permissions_class = (IsAdminUser|IsClientReferentInClientView)
     serializer_class = ClientListSerializer
@@ -15,3 +16,4 @@ class ClientViewSet(ModelViewSet):
             return self.detail_serializer_class
         return super().get_serializer_class()
     
+
