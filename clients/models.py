@@ -14,7 +14,7 @@ class Client(models.Model):
     date_created = models.DateField(default=date.today)
     sales_contact = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
-    limit_choices_to={'groups__name': 'sales_team'}, null=True, on_delete=models.SET_NULL) #ANCHOR manytomany ou foreignkey ?
+    limit_choices_to={'groups__name': 'sales_team'}, null=True, on_delete=models.SET_NULL)
     
     def __str__(self):
         return self.company_name.capitalize()

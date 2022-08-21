@@ -39,8 +39,5 @@ class ContractViewSet(ModelViewSet):
         serializer.save()
     
     def perform_create(self, serializer):
-        print(self.request.data)
         serializer.save(client_id=self.request.data["client_id"])   
         serializer.save()    
-        # ANCHOR POURQUOI BESOIN DE CETTE LIGNE ?
-        # Gestion des erreurs ! ICI : KeyError 'client_id'
