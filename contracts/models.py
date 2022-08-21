@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib import admin
 from datetime import date
-
 class Contract(models.Model):
 
     client = models.ForeignKey("clients.Client", on_delete=models.CASCADE, related_name="contract_client")
@@ -24,7 +23,6 @@ class Contract(models.Model):
             else:
                 str_status = self.RED[1]
         return f'{self.client.company_name.capitalize()} | {self.title} | {str_status}'
-
 class ContractAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Contract, ContractAdmin)

@@ -9,5 +9,5 @@ class IsClientReferentInClientView(permissions.BasePermission):
             try:
                 client = Client.objects.get(id=view.kwargs["pk"])
             except ObjectDoesNotExist:
-                return False  
+                return False
             return request.user == client.sales_contact
