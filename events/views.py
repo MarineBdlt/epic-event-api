@@ -6,7 +6,7 @@ from events.permissions import IsSupportTeam
 
 
 class EventViewSet(ModelViewSet):
-    permission_classe = IsAdminUser | IsSupportTeam
+    permission_classes = [IsAdminUser | IsSupportTeam]
     serializer_class = EventSerializer
     queryset = Event.objects.all()
     filterset_fields = [

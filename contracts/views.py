@@ -16,7 +16,7 @@ from rest_framework import status
 
 class ContractViewSet(ModelViewSet):
     queryset = Contract.objects.all()
-    permission_class = IsAdminUser | IsClientReferentInContractView
+    permission_classes = [IsAdminUser | IsClientReferentInContractView]
     filterset_fields = ["client__company_name", "client__email", "date", "amount"]
 
     serializer_class = ContractListSerializer
