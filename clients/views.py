@@ -6,7 +6,7 @@ from clients.permissions import IsClientReferentInClientView
 
 
 class ClientViewSet(ModelViewSet):
-    permissions_class = IsAdminUser | IsClientReferentInClientView
+    permission_classes = [IsAdminUser | IsClientReferentInClientView]
     serializer_class = ClientListSerializer
     detail_serializer_class = ClientDetailSerializer
     queryset = Client.objects.all()
