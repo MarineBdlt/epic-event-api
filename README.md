@@ -66,5 +66,5 @@ If you want to know more about Django admin, you should check Django's documenta
 ## API access
 
 Go to your browser and type the address http://127.0.0.1:8000/api/login.
-Check the * [DOCUMENTATION](https://documenter.getpostman.com/view/16475012/VUqoPJD9) of Epic Event API
+Check the [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/16475012/VUqoPJD9) of Epic Event API
 
