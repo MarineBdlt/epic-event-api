@@ -1,8 +1,10 @@
+from multiprocessing import Event
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAdminUser
 from clients.serializers import ClientListSerializer, ClientDetailSerializer
 from clients.models import Client
 from clients.permissions import IsClientReferentInClientView
+from contracts.models import Contract
 
 
 class ClientViewSet(ModelViewSet):

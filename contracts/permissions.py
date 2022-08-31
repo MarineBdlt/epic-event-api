@@ -9,5 +9,7 @@ class IsClientReferentInContractView(permissions.BasePermission):
             try:
                 contract = Contract.objects.get(id=view.kwargs["pk"])
             except ObjectDoesNotExist:
-                return False  
+                return False
             return request.user == contract.client.sales_contact
+        else:
+            return True

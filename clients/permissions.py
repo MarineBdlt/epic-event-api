@@ -11,3 +11,5 @@ class IsClientReferentInClientView(permissions.BasePermission):
             except ObjectDoesNotExist:
                 return False
             return request.user == client.sales_contact
+        else:
+            return True

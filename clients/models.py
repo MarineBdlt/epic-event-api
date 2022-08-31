@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib import admin
 from datetime import date
 from django.conf import settings
 
@@ -22,10 +21,3 @@ class Client(models.Model):
 
     def __str__(self):
         return self.company_name.capitalize()
-
-
-class ClientAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Client, ClientAdmin)
