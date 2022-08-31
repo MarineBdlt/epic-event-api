@@ -1,7 +1,3 @@
-from webbrowser import get
-from django.db import IntegrityError
-from django.forms import ValidationError
-from django.http import request, response
 from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAdminUser
@@ -9,9 +5,6 @@ from contracts.models import Contract
 from contracts.permissions import IsClientReferentInContractView
 from contracts.serializers import ContractDetailSerializer, ContractListSerializer
 from events.models import Event
-from clients.models import Client
-from rest_framework.response import Response
-from rest_framework import status
 
 
 class ContractViewSet(ModelViewSet):
