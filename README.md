@@ -53,10 +53,6 @@ $ python manage.py runserver
 ```
 You can find the app on django-host : http://127.0.0.1:8000/
 
-## Documentation
-
-You can find all the information necessary to perform CRUD operations on endpoints here: [Documentation Postman](https://documenter.getpostman.com/view/16475012/Uz5MFZP8) or in the project opening the file apiary.apib with [APIARY](https://apiary.io/).
-
 ## Django admin
 
 Go to your browser and type the address http://127.0.0.1:8000/admin/.
