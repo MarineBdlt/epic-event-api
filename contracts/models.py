@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db import models
 from datetime import date
 
@@ -12,12 +11,6 @@ class Contract(models.Model):
     title = models.CharField(null=True, blank=True, max_length=50)
     content = models.CharField(null=True, blank=True, max_length=1000)
     date = models.DateField(default=date.today)
-    support_team = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL,
-        limit_choices_to={"groups__name": "support_team"},
-        null=True,
-        on_delete=models.SET_NULL,
-    )
 
     RED = "RED", "Rédaction"
     CS = "CS", "En cours de signature"
