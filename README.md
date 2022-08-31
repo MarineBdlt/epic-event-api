@@ -7,8 +7,8 @@ Api for secure internal CRM system..
 2. [Technologies](#technologies)
 3. [Installation](#installation)
 4. [Run the project](#run-the-project)
-5. [Documentation](#documentation)
-6. [Admin](#django-admin)
+5. [Admin](#django-admin)
+6. [Access and Documentation](#access-and-documentation)
 
 ## General Info
 ***
@@ -53,14 +53,15 @@ $ python manage.py runserver
 ```
 You can find the app on django-host : http://127.0.0.1:8000/
 
+## Access and Documentation
+
+Go to your browser and type the address http://127.0.0.1:8000/api/login.
+Check the [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/16475012/VUqoPJD9) of Epic Event API
+
 ## Django admin
 
 Go to your browser and type the address http://127.0.0.1:8000/admin/.
 
 If you want to know more about Django admin, you should check Django's documentation: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/
 
-## API access
-
-Go to your browser and type the address http://127.0.0.1:8000/api/login.
-Check the [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/16475012/VUqoPJD9) of Epic Event API
 
